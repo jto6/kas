@@ -1,0 +1,62 @@
+header:
+  version: 14
+
+machine: am62xx-evm
+distro: arago
+target: tisdk-default-image
+
+defaults:
+  repos:
+    refspec: "kirkstone"
+
+repos:
+  bitbake:
+    url: https://git.openembedded.org/bitbake
+    refspec: "2.0"
+    layers:
+      .: excluded
+
+  meta-arago:
+    url: "https://git.yoctoproject.org/meta-arago"
+    layers:
+      meta-arago-distro:
+      meta-arago-extras:
+
+  meta-qt5:
+    url: "https://github.com/meta-qt5/meta-qt5.git"
+
+  meta-virtualization:
+    url: "https://git.yoctoproject.org/meta-virtualization"
+
+  meta-openembedded:
+    url: "https://git.openembedded.org/meta-openembedded"
+    layers:
+      meta-networking:
+      meta-python:
+      meta-oe:
+      meta-gnome:
+      meta-filesystems:
+
+  meta-ti:
+    url: "https://git.yoctoproject.org/meta-ti"
+    layers:
+      meta-ti-extras:
+      meta-ti-bsp:
+
+  meta-arm:
+    url: "https://git.yoctoproject.org/meta-arm"
+    layers:
+      meta-arm:
+      meta-arm-toolchain:
+
+  oe-core:
+    url: "https://git.openembedded.org/openembedded-core"
+    layers:
+      meta:
+
+local_conf_header:
+  base: |
+    PACKAGE_CLASSES = "package_ipk"
+    EXTRA_IMAGE_FEATURES:append = " debug-tweaks"
+    SOURCE_MIRROR_URL = "http://lcpd.itg.ti.com/sources"
+    DL_DIR = "/home/jon/dev/yocto/downloads"
