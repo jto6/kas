@@ -1,0 +1,6 @@
+header:
+  version: 14
+  includes:
+    - arago-kirkstone.yml
+
+machine: j784s8-evm
